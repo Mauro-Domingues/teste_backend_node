@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const mainRoute = require('./routes/mainRoute')
+const userRoute = require('./routes/userRoutes/userRoutes.js')
+const eventRoute = require('./routes/eventRoutes/eventRoute.js')
+const ticketRoute = require('./routes/eventRoutes/ticketRoutes/ticketRoutes.js')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -13,5 +16,7 @@ app.use((req, res, next) => {
 }) // Tratamento dos erros cors se der tempo de hospedar
 
 app.use('/', mainRoute)
+app.use('/user', userRoute)
+app.use('/event', eventRoute, ticketRoute)
 
 module.exports = app

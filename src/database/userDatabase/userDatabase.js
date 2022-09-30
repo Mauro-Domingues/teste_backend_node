@@ -1,7 +1,7 @@
 const db = require("../dbConn.js")
 
 class userDatabase {
-
+    
     async get() {
         const conn = await db.connectToMySql()
         const query = "SELECT * FROM user"
