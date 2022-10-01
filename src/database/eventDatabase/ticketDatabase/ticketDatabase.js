@@ -1,46 +1,62 @@
 const db = require("../../dbConn.js")
 
 class ticketDatabase {
-    async get() {
+    async get(id) {
         const conn = await db.connectToMySql()
-        const query = "SELECT * FROM ticket"
-        const [tickets] = await conn.query(query)
+        const query = "SELECT * FROM ticket WHERE id = ?"
+        const [tickets] = await conn.query(query, [id])
         return tickets
     }
 
-    async getById(id) {
+    async getById(ticketData) {
         const conn = await db.connectToMySql()
-        const query = "SELECT * FROM ticket WHERE id = ?"
-        const [ticket] = await conn.query(query, [id])
+        const query = "SELECT * FROM ticket WHERE ticket_id = ?"
+        const [ticket] = await conn.query(query, [
+            ticketData.ticket_id
+        ])
         return ticket
     }
 
     async create(ticketData) {
         const conn = await db.connectToMySql()
-        const query = "INSERT INTO ticket (id, bar_code, qr_code, price) VALUES (?, ?, ?, ?)"
+        const query = "INSERT INTO ticket (id, bar_code, qr_code, price, type) VALUES (?, ?, ?, ?, ?)"
+        let price = null
+        switch(ticketData.type){
+            case 'Camarote':
+                price = 150.00
+            break
+            case 'Vip':
+                price = 100.00
+            break
+            case 'Pista':
+                price = 70.00
+            break
+            default: 
+        } 
         const ticket = await conn.query(query, [
             ticketData.id,
-            ticketData.bar_code,
-            ticketData.qr_code,
-            ticketData.price
+            ticketData.code,
+            ticketData.code,
+            price,
+            ticketData.type
         ])
         return ticket
     }
 
-    async update(id, ticketData) {
+    async update(ticketData) {
         const conn = await db.connectToMySql()
-        const query = "UPDATE event SET arg = ? WHERE id = ?"
+        const query = "UPDATE event SET arg = ? WHERE ticket_id = ?"
         const ticket = await conn.query(query, [
             ticketData.arg,
-            id
+            ticketData.ticket_id
         ])
         return ticket
     }
 
-    async delete(id) {
+    async delete(ticketData) {
         const conn = await db.connectToMySql()
-        const query = "DELETE FROM ticket WHERE id = ?"
-        const ticket = await conn.query(query, [id])
+        const query = "DELETE FROM ticket WHERE ticket_id = ?"
+        const ticket = await conn.query(query, [ticketData.ticket_id])
     }
 }
 

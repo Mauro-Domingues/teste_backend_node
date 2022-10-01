@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 
 app.use('/', mainRoute)
 app.use('/user', userRoute)
-app.use('/event', eventRoute, ticketRoute)
+app.use('/event', eventRoute)
+app.use('/ticket', ticketRoute)
 
 module.exports = app

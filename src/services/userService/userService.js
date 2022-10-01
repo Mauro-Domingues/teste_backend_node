@@ -26,6 +26,10 @@ class UserService {
     return this.repository.delete(id)
   }
 
+  async checkUser(auth){
+    return this.repository.login(auth)
+  }
+
 }
 
 module.exports = UserService

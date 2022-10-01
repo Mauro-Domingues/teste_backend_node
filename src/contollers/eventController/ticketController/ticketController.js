@@ -2,7 +2,7 @@ const TicketService = require("../../../services/eventService/ticketService/tick
 
 exports.get = async (req, res, next) => {
     try {
-        const payload = await new TicketService().getAllTickets()
+        const payload = await new TicketService().getAllTickets(req.params.id)
         res.status(200).send(payload)
     } catch (error) {
         res.status(400).send({
@@ -13,7 +13,7 @@ exports.get = async (req, res, next) => {
 
 exports.getById = async (req, res, next) => {
     try {
-        const payload = await new TicketService().getTicketById(req.params.id)
+        const payload = await new TicketService().getTicketById(req.body)
         res.status(200).send(payload)
     } catch (error) {
         res.status(400).send({
@@ -35,13 +35,13 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
     try {
-        const id = req.params.id
+        const ticket_id = req.params.ticket_id
         const body = req.body
-        const oldTicket = await new TicketService().getTicketById(id)
+        const oldTicket = await new TicketService().getTicketById(req.body)
         if (!oldTicket || oldTicket.length === 0) {
-            throw new Error(`Ingresso número ${id} não foi encontrado`)
+            throw new Error(`Ingresso número ${ticket_id} não foi encontrado`)
         }
-        const payload = await new TicketService().updateTicket(id, body)
+        const payload = await new TicketService().updateTicket(req.body)
         res.status(200).send(payload)
     } catch (error) {
         res.status(404).send({
@@ -52,12 +52,12 @@ exports.put = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
     try {
-        const id = req.params.id
-        const oldTicket = await new TicketService().getTicketById(id)
+        const ticket_id = req.params.ticket_id
+        const oldTicket = await new TicketService().getTicketById(req.body)
         if (!oldTicket || oldTicket.length === 0) {
-            throw new Error(`O Ingresso número ${id} não existe`)
+            throw new Error(`O Ingresso número ${ticket_id} não existe`)
         }
-        const payload = await new TicketService().deleteTicket(id)
+        const payload = await new TicketService().deleteTicket(req.body)
         res.status(204).send(payload)
     } catch (error) {
         res.status(404).send({

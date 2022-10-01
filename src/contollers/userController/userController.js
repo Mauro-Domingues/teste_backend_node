@@ -65,3 +65,14 @@ exports.delete = async (req, res, next) => {
         })
     }
 }
+
+exports.login = async (req, res, next) => {
+    try {
+        const payload = await new UserService().checkUser(req.body)
+        res.status(200).send(payload)
+    } catch (error) {
+        res.status(401).send({
+            message: error.message
+        })
+    }
+}

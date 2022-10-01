@@ -6,24 +6,24 @@ class EventService {
     this.repository = new ticketDatabase()
   }
 
-  async getAllTickets(){
-    return this.repository.get()
+  async getAllTickets(id){
+    return this.repository.get(id)
   }
 
-  async getTicketById(id){
-    return this.repository.getById(id)
+  async getTicketById(ticket){
+    return this.repository.getById(ticket)
   }
 
   async createTicket(ticket){
     return this.repository.create(ticket)
   }
 
-  async updateTicket(id, arg){
-    return this.repository.update(id, arg)
+  async updateTicket(ticket){
+    return this.repository.update(ticket)
   }
 
-  async deleteTicket(id){
-    return this.repository.delete(id)
+  async deleteTicket(ticket){
+    return this.repository.delete(ticket)
   }
 
 }
