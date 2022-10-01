@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS'){
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
   }next()
-}) // Tratamento dos erros cors se der tempo de hospedar
+})
 
 app.use('/', mainRoute)
 app.use('/user', userRoute)

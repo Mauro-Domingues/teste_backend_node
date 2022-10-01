@@ -51,7 +51,7 @@ class userDatabase {
         const conn = await db.connectToMySql()
         const query = "SELECT * FROM user"
         const [users] = await conn.query(query)
-        let auth = [{'status': 'Falha na autenticação'}]
+        let auth = [{'Token': 'Falha na autenticação'}]
         users.map(() => {
             for (let i = 0; i < users.length; i++) {
                 if (userData.email === users[i].email) {

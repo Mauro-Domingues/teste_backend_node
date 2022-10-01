@@ -6,12 +6,16 @@ class EventService {
     this.repository = new ticketDatabase()
   }
 
+  async getEveryTicket(){
+    return this.repository.getAll()
+  }
+
   async getAllTickets(id){
     return this.repository.get(id)
   }
 
-  async getTicketById(ticket){
-    return this.repository.getById(ticket)
+  async getTicketById(ticket_id){
+    return this.repository.getById(ticket_id)
   }
 
   async createTicket(ticket){

@@ -1,5 +1,16 @@
 const TicketService = require("../../../services/eventService/ticketService/ticketService.js")
 
+exports.getAll = async (req, res, next) => {
+    try {
+        const payload = await new TicketService().getEveryTicket()
+        res.status(200).send(payload)
+    } catch (error) {
+        res.status(400).send({
+            message: error.message
+        })
+    }
+}
+
 exports.get = async (req, res, next) => {
     try {
         const payload = await new TicketService().getAllTickets(req.params.id)
@@ -13,7 +24,7 @@ exports.get = async (req, res, next) => {
 
 exports.getById = async (req, res, next) => {
     try {
-        const payload = await new TicketService().getTicketById(req.body)
+        const payload = await new TicketService().getTicketById(req.params.ticket_id)
         res.status(200).send(payload)
     } catch (error) {
         res.status(400).send({
