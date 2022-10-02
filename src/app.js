@@ -1,9 +1,9 @@
 const express = require('express')
-const app = express()
 const mainRoute = require('./routes/mainRoute')
 const userRoute = require('./routes/userRoutes/userRoutes.js')
 const eventRoute = require('./routes/eventRoutes/eventRoute.js')
 const ticketRoute = require('./routes/eventRoutes/ticketRoutes/ticketRoutes.js')
+const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
