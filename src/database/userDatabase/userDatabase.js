@@ -20,10 +20,9 @@ class userDatabase {
 
     async create(userData) {
         const conn = await db.connectToMySql()
-        const query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)"
+        const query = "INSERT INTO user (email, password) VALUES (?, ?)"
         //bcrypt.hash(userData.password, 10, async (err, res) => {
         const user = await conn.query(query, [
-            userData.name,
             userData.email,
             userData.password
         ])
@@ -33,12 +32,14 @@ class userDatabase {
 
     async update(id, userData) {
         const conn = await db.connectToMySql()
-        const query = "UPDATE user SET arg = ? WHERE id = ?"
+        const query = "UPDATE user SET password = ? WHERE id = ?"
+        //bcrypt.hash(userData.password, 10, async (err, res) => {
         const user = await conn.query(query, [
-            userData.arg,
+            userData.password,
             id
         ])
         return user
+        //}) bcrypt funcionando perfeitamente ao editar, resolver o login e então remover o comentário
     }
 
     async delete(id) {

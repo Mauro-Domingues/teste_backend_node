@@ -33,9 +33,16 @@ class eventDatabase {
 
     async update(id, eventData) {
         const conn = await db.connectToMySql()
-        const query = "UPDATE event SET arg = ? WHERE id = ?"
+        const query = "UPDATE event SET name = ?, description = ?, image = ?, data = ?, place = ?, coordinates = ?, important_info = ?, map = ? WHERE id = ?"
         const event = await conn.query(query, [
-            eventData.arg,
+            eventData.name,
+            eventData.description,
+            eventData.image,
+            eventData.data,
+            eventData.place,
+            eventData.coordinates,
+            eventData.important_info,
+            eventData.map,
             id
         ])
         return event
