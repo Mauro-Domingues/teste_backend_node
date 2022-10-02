@@ -5,7 +5,7 @@ const lane = 70 // Preço do ingresso na pista
 const vip = 100 // Preço do ingresso vip
 const cabin = 150 // Preço do ingresso no camarote
 let days = 10 // Especifique de quantos em quantos dias são limitados os lotes para venda até a data do evento
-const ticketLot = 5 // Quantidade de lotes de vendas por evento
+const ticketLot = 5 // Quantidade máxima de lotes de vendas por evento
 // Por enquanto inseridos manualmente -> "prioridade baixa"
 
 async function setLot(id, type) {
@@ -95,25 +95,26 @@ class ticketDatabase {
         return ticket
     }
 
-    async update(ticketData) {
+    async update(ticket_id, ticketData) {
         const conn = await db.connectToMySql()
-        const query = "UPDATE event SET type = ?, price = ? WHERE ticket_id = ?"
-        const id = ticketData.id
+        const search = "SELECT * FROM ticket WHERE ticket_id = ?"
+        const find = await conn.query(search, [ticket_id])
+        let id = find[0]
+        id.map((track) => {id = track.id})
+        const query = "UPDATE ticket SET type = ?, price = ? WHERE ticket_id = ?"
         const type = ticketData.type
         const lot = await setLot(id, type)
         const price = setValue(type, lot)
-        const ticket = await conn.query(query, [
-            type,
-            price,
-            ticketData.ticket_id
-        ])
+        const ticket = await conn.query(query, [type, price, ticket_id])
         return ticket
-    }
+    } 
+    /* Tá um pouco bagunçado mas aqui ele vai antes de alterar a área do ingresso, validar se o lote ainda está disponível.
+    Se não estiver ele altera o ingresso e o valor para o próximo lote e o cliente paga o preço atualizado*/
 
-    async delete(ticketData) {
+    async delete(ticket_id) {
         const conn = await db.connectToMySql()
         const query = "DELETE FROM ticket WHERE ticket_id = ?"
-        const ticket = await conn.query(query, [ticketData.ticket_id])
+        const ticket = await conn.query(query, [ticket_id])
     }
 }
 

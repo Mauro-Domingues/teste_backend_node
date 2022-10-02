@@ -21,12 +21,12 @@ class eventDatabase {
         const event = await conn.query(query, [
             eventData.name,
             eventData.description,
-            eventData.image, // Inserir imagem
+            eventData.image, // Inserir imagem -> "Prioridade baixa"
             eventData.data,
             eventData.place,
             eventData.coordinates,
             eventData.important_info,
-            eventData.map  // Inserir imagem
+            eventData.map  // Inserir imagem -> "Prioridade baixa"
         ])
         return event
     }

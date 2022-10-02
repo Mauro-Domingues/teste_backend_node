@@ -22,12 +22,12 @@ class EventService {
     return this.repository.create(ticket)
   }
 
-  async updateTicket(ticket){
-    return this.repository.update(ticket)
+  async updateTicket(ticket_id, ticket){
+    return this.repository.update(ticket_id, ticket)
   }
 
-  async deleteTicket(ticket){
-    return this.repository.delete(ticket)
+  async deleteTicket(ticket_id){
+    return this.repository.delete(ticket_id)
   }
 
 }

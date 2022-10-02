@@ -48,11 +48,11 @@ exports.put = async (req, res, next) => {
     try {
         const ticket_id = req.params.ticket_id
         const body = req.body
-        const oldTicket = await new TicketService().getTicketById(req.body)
+        const oldTicket = await new TicketService().getTicketById(req.params.ticket_id)
         if (!oldTicket || oldTicket.length === 0) {
             throw new Error(`Ingresso número ${ticket_id} não foi encontrado`)
         }
-        const payload = await new TicketService().updateTicket(req.body)
+        const payload = await new TicketService().updateTicket(req.params.ticket_id, req.body)
         res.status(200).send(payload)
     } catch (error) {
         res.status(404).send({
@@ -64,11 +64,11 @@ exports.put = async (req, res, next) => {
 exports.delete = async (req, res, next) => {
     try {
         const ticket_id = req.params.ticket_id
-        const oldTicket = await new TicketService().getTicketById(req.body)
+        const oldTicket = await new TicketService().getTicketById(req.params.ticket_id)
         if (!oldTicket || oldTicket.length === 0) {
             throw new Error(`O Ingresso número ${ticket_id} não existe`)
         }
-        const payload = await new TicketService().deleteTicket(req.body)
+        const payload = await new TicketService().deleteTicket(req.params.ticket_id)
         res.status(204).send(payload)
     } catch (error) {
         res.status(404).send({

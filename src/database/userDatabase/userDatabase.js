@@ -28,7 +28,7 @@ class userDatabase {
             userData.password
         ])
         return user
-        //}) bcrypt funcionando perfeitamente ao criar
+        //}) bcrypt funcionando perfeitamente ao criar, resolver o login e então remover o comentário
     }
 
     async update(id, userData) {
@@ -66,7 +66,8 @@ class userDatabase {
                                 })
                             }]
                         }
-                    }) Tentei usar o bcrypt para validar a senha mas não retorna para fora do escopo*/
+                    }) Tentei usar o bcrypt para validar a senha mas não retorna para fora do escopo 
+                    Tentar resolver após terminar a api -> "Prioridade média"*/
                     if (userData.password === users[i].password) {
                         auth = [{
                             "Token": jwt.sign({
@@ -76,7 +77,7 @@ class userDatabase {
                                 expiresIn: "1h"
                             })
                         }]
-                    }
+                    } // Criar uma forma de validar o token no header das requisições -> "Prioridade média"
                 }
             }
         })
