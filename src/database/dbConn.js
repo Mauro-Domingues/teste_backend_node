@@ -5,15 +5,17 @@ const connectToMySql = async () => {
     if (global.connection && global.connection.state !== 'disconnected'){
         return global.connection
     }
-    const connData = {
+    const config = {
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE
     }
-    const connection = await mysql.createConnection(connData)
+    const connection = await mysql.createConnection(config)
     global.connection = connection
 }
 
 connectToMySql()
-module.exports = {connectToMySql}
+
+const connSuccessful = {connectToMySql}
+module.exports = connSuccessful
