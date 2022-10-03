@@ -14,4 +14,4 @@ app.use('/user', userRoute)
 app.use('/event', eventRoute)
 app.use('/ticket', ticketRoute)
 
-module.exports = app // teste de deploy
+module.exports = app // teste de deploy//remover env
