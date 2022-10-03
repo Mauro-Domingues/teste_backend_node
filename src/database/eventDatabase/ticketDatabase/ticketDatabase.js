@@ -1,5 +1,4 @@
 const db = require('../../dbConn.js')
-//require('dotenv').config()
 
 async function setLot(id, type) {
     const amountPerlot = process.env.INGRESSOS_POR_LOTE
