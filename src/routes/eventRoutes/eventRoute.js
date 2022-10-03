@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
 const eventController = require('../../contollers/eventController/eventController.js')
 const auth = require('../../middlewares/auth.js')
+const express = require('express')
+const router = express.Router()
 
 router.get('/', auth, eventController.get)
 router.get('/:id', auth, eventController.getById)

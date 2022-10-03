@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
 const userController = require('../../contollers/userController/userController.js')
 const auth = require('../../middlewares/auth.js')
+const express = require('express')
+const router = express.Router()
 
 router.get('/', auth, userController.get)
 router.get('/:id', auth, userController.getById)
