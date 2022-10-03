@@ -1,4 +1,4 @@
-const db = require('../../dbConn.js')
+//const db = require('../../dbConn.js')
 require('dotenv').config()
 
 async function setLot(id, type) {
