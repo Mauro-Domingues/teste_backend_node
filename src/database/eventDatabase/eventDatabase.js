@@ -1,4 +1,4 @@
-//const db = require('../dbConn.js')
+const db = require('../dbConn.js')
 
 class eventDatabase {
     async get() {
