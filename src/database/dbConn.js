@@ -15,5 +15,5 @@ const connectToMySql = async () => {
     global.connection = connection
 }
 
-connectToMySql()
+await connectToMySql()
 module.exports = {connectToMySql}
