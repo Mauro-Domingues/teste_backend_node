@@ -1,7 +1,7 @@
-const ticketController = require('../../../contollers/eventController/ticketController/ticketController.js')
-const auth = require('../../../middlewares/auth.js')
 const express = require('express')
 const router = express.Router()
+const ticketController = require('../../../contollers/eventController/ticketController/ticketController.js')
+const auth = require('../../../middlewares/auth.js')
 
 router.get('/', auth, ticketController.getAll)
 router.get('/:id', auth, ticketController.get)
