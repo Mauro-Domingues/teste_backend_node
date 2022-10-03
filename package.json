@@ -2,7 +2,7 @@
   "name": "teste_backend_node",
   "version": "1.0.0",
   "description": "Projeto nodejs",
-  "main": "app.js",
+  "main": "index.js",
   "bin": {
     "teste_backend_node": "bin/server.js"
   },
