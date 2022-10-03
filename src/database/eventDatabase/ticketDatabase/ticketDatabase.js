@@ -1,14 +1,12 @@
 const db = require("../../dbConn.js")
-
-const amountPerlot = 10 // Quantidade de ingressos do tipo por lote
-const lane = 70 // Preço do ingresso na pista
-const vip = 100 // Preço do ingresso vip
-const cabin = 150 // Preço do ingresso no camarote
-let days = 10 // Especifique de quantos em quantos dias são limitados os lotes para venda até a data do evento
-const ticketLot = 5 // Quantidade máxima de lotes de vendas por evento
-// Por enquanto inseridos manualmente para testes, criar uma maneira de setar no front -> "prioridade baixa"
+require('dotenv').config()
 
 async function setLot(id, type) {
+    const amountPerlot = process.env.INGRESSOS_POR_LOTE
+    let days = process.env.LIMITE_DE_DIAS_POR_LOTE
+    const ticketLot = process.env.QUANTIDADE_DE_LOTES
+    // Por enquanto inseridos manualmente para testes, criar uma maneira de setar no front -> "prioridade baixa"
+
     let lot = ticketLot
     let actualData = new Date()
     const conn = await db.connectToMySql()
@@ -35,6 +33,9 @@ async function setLot(id, type) {
 }
 
 function setValue(type, lot) {
+    const lane = process.env.VALOR_PISTA
+    const vip = process.env.VALOR_VIP
+    const cabin = process.env.VALOR_CAMAROTE
     let price
     switch(type){
         case 'Camarote':

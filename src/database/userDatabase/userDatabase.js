@@ -74,7 +74,7 @@ class userDatabase {
                             "Token": jwt.sign({
                                 user: users[i].email,
                                 password: users[i].password
-                            }, 'Segredo', {
+                            }, process.env.SECRET, {
                                 expiresIn: "1h"
                             })
                         }]
