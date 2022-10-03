@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const db = require('../dbConn.js')
 const bcrypt = require('bcrypt')
-require('dotenv').config()
 
 class userDatabase {
 
