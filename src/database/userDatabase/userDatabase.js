@@ -1,6 +1,6 @@
+const jwt = require('jsonwebtoken')
 const db = require('../dbConn.js')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 
 class userDatabase {
 
