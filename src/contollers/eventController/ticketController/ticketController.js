@@ -1,4 +1,4 @@
-const TicketService = require("../../../services/eventService/ticketService/ticketService.js")
+const TicketService = require('../../../services/eventService/ticketService/ticketService.js')
 
 exports.getAll = async (req, res, next) => {
     try {

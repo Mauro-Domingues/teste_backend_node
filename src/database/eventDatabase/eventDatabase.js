@@ -1,4 +1,4 @@
-const db = require("../dbConn.js")
+const db = require('../dbConn.js')
 
 class eventDatabase {
     async get() {
@@ -21,12 +21,12 @@ class eventDatabase {
         const event = await conn.query(query, [
             eventData.name,
             eventData.description,
-            eventData.image, // Inserir imagem -> "Prioridade baixa"
+            eventData.image,
             eventData.data,
             eventData.place,
             eventData.coordinates,
             eventData.important_info,
-            eventData.map  // Inserir imagem -> "Prioridade baixa"
+            eventData.map
         ])
         return event
     }
