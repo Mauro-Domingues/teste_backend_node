@@ -1,14 +1,15 @@
 const mysql = require('mysql2/promise')
+require('dotenv').config()
 
 const connectToMySql = async () => {
     if (global.connection && global.connection.state !== 'disconnected'){
         return global.connection
     }
     const config = {
-        host: "db4free.net",
-        user: "sota_admin",
-        password: "861928493b3bdd5aa35f5e9b9ec3c6292ff42ee6e60ebc2c36c3a411d5d64cbd",
-        database: "report_ticket_db"
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE
     }
     const connection = await mysql.createConnection(config)
     global.connection = connection
