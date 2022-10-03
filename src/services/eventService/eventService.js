@@ -18,8 +18,8 @@ class EventService {
     return this.repository.create(event)
   }
 
-  async updateEvent(id, arg){
-    return this.repository.update(id, arg)
+  async updateEvent(id, event){
+    return this.repository.update(id, event)
   }
 
   async deleteEvent(id){

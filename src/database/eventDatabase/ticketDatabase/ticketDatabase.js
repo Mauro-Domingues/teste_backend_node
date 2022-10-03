@@ -6,7 +6,7 @@ const vip = 100 // Preço do ingresso vip
 const cabin = 150 // Preço do ingresso no camarote
 let days = 10 // Especifique de quantos em quantos dias são limitados os lotes para venda até a data do evento
 const ticketLot = 5 // Quantidade máxima de lotes de vendas por evento
-// Por enquanto inseridos manualmente -> "prioridade baixa"
+// Por enquanto inseridos manualmente para testes, criar uma maneira de setar no front -> "prioridade baixa"
 
 async function setLot(id, type) {
     let lot = ticketLot
@@ -24,7 +24,6 @@ async function setLot(id, type) {
         dayBase > ticketLot ? dayBase = (ticketLot -1) : false    
         lot = lot - dayBase
     }) // Busca a data do evento e calcula a diferença da data atual para determinar o lote
-
     const check = "SELECT * FROM ticket WHERE id = ? AND type = ? AND lot = ?"
     let checkLot = await conn.query(check, [id, type, lot])
     while(checkLot[0].length > (amountPerlot - 1)){
@@ -101,11 +100,11 @@ class ticketDatabase {
         const find = await conn.query(search, [ticket_id])
         let id = find[0]
         id.map((track) => {id = track.id})
-        const query = "UPDATE ticket SET type = ?, price = ? WHERE ticket_id = ?"
+        const query = "UPDATE ticket SET type = ?, price = ?, lot = ? WHERE ticket_id = ?"
         const type = ticketData.type
         const lot = await setLot(id, type)
         const price = setValue(type, lot)
-        const ticket = await conn.query(query, [type, price, ticket_id])
+        const ticket = await conn.query(query, [type, price, lot,ticket_id])
         return ticket
     } 
     /* Tá um pouco bagunçado mas aqui ele vai antes de alterar a área do ingresso, validar se o lote ainda está disponível.

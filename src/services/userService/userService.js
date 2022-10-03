@@ -18,8 +18,8 @@ class UserService {
     return this.repository.create(user)
   }
 
-  async updateUser(id, arg){
-    return this.repository.update(id, arg)
+  async updateUser(id, user){
+    return this.repository.update(id, user)
   }
 
   async deleteUser(id){
