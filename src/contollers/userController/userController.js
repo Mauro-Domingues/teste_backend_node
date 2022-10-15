@@ -4,7 +4,7 @@ exports.get = async (req, res, next) => {
     try {
         const payload = await new UserService().getAllUsers()
         res.status(200, {message: "aaa"}).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: "falha ao buscar os usuários"
         })
@@ -15,7 +15,7 @@ exports.getById = async (req, res, next) => {
     try {
         const payload = await new UserService().getUserById(req.params.id)
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: `falha ao buscar o usuário com id ${req.params.id}`
         })
@@ -26,7 +26,7 @@ exports.post = async (req, res, next) => {
     try {
         const payload = await new UserService().createUser(req.body)
         res.status(201).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: "falha ao criar usuário"
         })
@@ -42,7 +42,7 @@ exports.put = async (req, res, next) => {
         }
         const payload = await new UserService().updateUser(id, req.body)
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(404).send({
             message: `falha ao atualizar o usuário com id ${req.params.id}`
         })
@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
     try {
         const payload = await new UserService().checkUser(req.body)
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(401).send({
             message: "falha na autenticação"
         })

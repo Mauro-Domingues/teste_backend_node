@@ -4,7 +4,7 @@ exports.get = async (req, res, next) => {
     try {
         const payload = await new EventService().getAllEvents()
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: "falha ao buscar os eventos"
         })
@@ -15,7 +15,7 @@ exports.getById = async (req, res, next) => {
     try {
         const payload = await new EventService().getEventById(req.params.id)
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: `falha ao buscar o evento com id ${req.params.id}`
         })
@@ -26,7 +26,7 @@ exports.post = async (req, res, next) => {
     try {
         const payload = await new EventService().createEvent(req.body)
         res.status(201).send(payload)
-    } catch {
+    } catch (error) {
         res.status(400).send({
             message: "falha ao criar o evento"
         })
@@ -42,7 +42,7 @@ exports.put = async (req, res, next) => {
         }
         const payload = await new EventService().updateEvent(id, req.body)
         res.status(200).send(payload)
-    } catch {
+    } catch (error) {
         res.status(404).send({
             message: `falha ao atualizar o evento com id ${req.params.id}`
         })
@@ -58,7 +58,7 @@ exports.delete = async (req, res, next) => {
         }
         const payload = await new EventService().deleteEvent(id)
         res.status(204).send(payload)
-    } catch {
+    } catch (error) {
         res.status(404).send({
             message: `falha ao deletar o evento com id ${req.params.id}`
         })
